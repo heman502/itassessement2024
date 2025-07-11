@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gallery - Satya Logistics</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    color: #333;
+  }
+  .navbar {
+    background-color: #004080;
+    color: white;
+    padding: 0.8rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .nav-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  .nav-logo-img {
+    height: 50px;
+  }
+  .nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  .nav-link {
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    text-decoration: none;
+  }
+  
+  .nav-phone {
+    font-weight: 600;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  h1.page-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #004080;
+  }
+  .breadcrumb {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 1.5rem;
+  }
+  .gallery-item {
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: white;
+    transition: transform 0.3s ease;
+  }
+  .gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+  }
+  .gallery-item img {
+    width: 100%;
+    display: block;
+    border-radius: 8px 8px 0 0;
+    height: 180px;
+    object-fit: cover;
+  }
+  .gallery-caption {
+    background: #004080;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 0 0 8px 8px;
+    user-select: none;
+  }
+  /* Modal */
+  #modal {
+    display: none;
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  #modal.active {
+    display: flex;
+  }
+  #modal img {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  }
+  #modal .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+  }
+  /* Footer */
+  .footer {
+    background-color: #00264d;
+    color: white;
+    padding: 2rem 0;
+    margin-top: 4rem;
+  }
+  .footer-content {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+  .footer-section {
+    flex: 1;
+    min-width: 200px;
+  }
+  .footer-section h3 {
+    margin-bottom: 1rem;
+  }
+  .footer-section ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .footer-section ul li {
+    margin-bottom: 0.5rem;
+  }
+  .footer-section ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+  }
+  .footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.jpg" alt="Satya Logistics Logo" class="nav-logo-img">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">HOME</a></li>
+                <li><a href="about.html" class="nav-link active">ABOUT</a></li>
+                <li><a href="services.html" class="nav-link">SERVICES</a></li>
+                <li><a href="gallery.html" class="nav-link">GALLERY</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+            </ul>
+            <div class="nav-status">🌍 Serving You Nationwide</div>
+
+        </div>
+    </nav>
+
+<main class="container">
+  <h1 class="page-title">Gallery</h1>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> / Gallery
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openModal(this)">
+      <img src="service-1.jpg" alt="Multi-Modal Transport Operations" />
+      <div class="gallery-caption">Multi-Modal Transport</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(this)">
+      <img src="service-2.jpg" alt="Warehouse Management and Inventory Control" />
+      <div class="gallery-caption">Warehouse Management</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(this)">
+      <img src="service-5.jpg" alt="Our extensive fleet of modern logistics trucks" />
+      <div class="gallery-caption">Transport Fleet</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(this)">
+      <img src="service-4.jpg" alt="Delivery Services" />
+      <div class="gallery-caption">Delivery Services</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(this)">
+      <img src="service-6.jpg" alt="Air cargo loading and handling operations" />
+      <div class="gallery-caption">Air Freight Operations</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(this)">
+      <img src="about.jpg" alt="Checking a parcel box" />
+      <div class="gallery-caption">Parcel Handling</div>
+    </div>
+  </div>
+</main>
+
+<div id="modal" onclick="closeModal(event)">
+  <span class="close-btn" onclick="closeModal(event)">&times;</span>
+  <img id="modal-img" src="" alt="" />
+</div>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Satya Logistics Pvt. Ltd.</h3>
+      <p>123 Logistics Avenue<br />Business District, NY 10001<br />Phone: +977 9801045102</p>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>External Links</h3>
+      <ul>
+        <li><a href="https://www.freightquote.com" target="_blank" rel="noopener noreferrer">FreightQuote</a></li>
+        <li><a href="https://www.logistics.dhl" target="_blank" rel="noopener noreferrer">DHL Logistics</a></li>
+        <li><a href="https://www.fedex.com" target="_blank" rel="noopener noreferrer">FedEx Services</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Satya Logistics Pvt. Ltd. All rights reserved. | <a href="mailto:info@satyalogistics.com">info@satyalogistics.com</a></p>
+  </div>
+</footer>
+
+<script>
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modal-img');
+
+  function openModal(element) {
+    const img = element.querySelector('img');
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+    modal.classList.add('active');
+  }
+
+  function closeModal(event) {
+    if (event.target === modal || event.target.classList.contains('close-btn')) {
+      modal.classList.remove('active');
+      modalImg.src = '';
+      modalImg.alt = '';
+    }
+  }
+</script>
+
+</body>
+</html>
